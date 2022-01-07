@@ -16,7 +16,7 @@
   "author": "Sviatoslav Sumish <>",
   "license": "ISC",
   "bugs": {
-    "url": "https://https://github.com/SlavikSumish/goit-hw-8/issues"
+    "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5",

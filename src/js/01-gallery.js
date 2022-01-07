@@ -1,23 +1,21 @@
 // Add imports above this line
 
-
-import SimpleLightbox from "simplelightbox";
-
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from './gallery-items';
-// Change code below this line
+import SimpleLightbox from "simplelightbox";
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-console.log(galleryItems);
+
+
 const refs = {
   gallery: document.querySelector('.gallery'),
 }
 
 refs.gallery.addEventListener('click', onImageClick)
 
-function onImageClick(event) {
-  event.preventDefault();
-  const isClickOnGalleryImage = event.target.classList.contains('gallery__image');
-  if (!isClickOnGalleryImage) {
+function onImageClick(e) {
+  e.preventDefault();
+  const isClickOnImage = e.target.classList.contains('gallery__image');
+  if (!isClickOnImage) {
     return;
   }
 }
@@ -25,13 +23,17 @@ function onImageClick(event) {
 const galleryMarkup = createGalleryMarkup(galleryItems);
 
 function createGalleryMarkup(galleryItems) {
-  return galleryItems.map(item => {
-  return  `<a class="gallery__item" href="${item.original}">
-  <img class="gallery__image" src="${item.preview}" alt="${item.description}"  />
+  return galleryItems
+    .map(({ preview, original, description}) => {
+      return `
+        <a class="gallery__item" href="${original}">
+  <img class="gallery__image" src="${preview}" alt="${description}"  />
 </a>`
 }).join('');
 }
 
 refs.gallery.innerHTML = galleryMarkup;
 
-new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
+new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250 });
+
+console.log(galleryItems);
